@@ -1,6 +1,6 @@
 # Bug Bounty Reference
 
-A list of bug bounty write-up that is categorized by the bug nature, this is inspired by https://github.com/ngalongc/bug-bounty-reference
+A list of bug bounty write-up that is categorized by the bug nature, this is inspired by https://github.com/djadmin/awesome-bug-bounty
 
 Here You can find the writeups of all the bugs that was awesome.
 
