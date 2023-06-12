@@ -13,3 +13,5 @@ grep -ir 'api_key'
 grep -ir 'api-key'
 grep -ir apikey
 grep -ir username
+grep -Eori 'https?://[^[:space:]]+' 
+
