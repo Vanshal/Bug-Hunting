@@ -1,0 +1,15 @@
+apkx 
+dex2jar-d2j 
+export source code
+
+
+grep -ir password
+grep -ir sql
+grep -ir passwd
+grep -ir pwd
+grep -ir 'http://'
+grep -ir 'https://'
+grep -ir 'api_key'
+grep -ir 'api-key'
+grep -ir apikey
+grep -ir username
