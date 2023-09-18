@@ -1,3 +1,224 @@
+-----------------
+Crypto 
+
+bit - 0 or 1 
+1 byte - 8bit
+
+Steam cipher - symmetric - take one bit/byte at a time and do XORing       
+Block cipher - symmetric - take one block (64bit,128bit etc) at a time      - blowfish, aed, des 
+ 
+Confusion - try to make the Relation between plaintext and cipher texT AS complex as possible, if we change 1 bit of plaintext then half or more bit of cipher text should also change. 
+Defusion - try to make the Relation between key and cipher texT AS complex as possible, if we change 1 bit of key then almost all bits of cipher text should change. 
+
+
+Symmetric - AES 256 - 
+Asymmetrric - RSA - 
+
+Since RSA cannot encrypt long messages, we can use AES to encrypt and encrypt the AES key using RSA to securely share it to someone. 
+
+-------------------
+
+SSL Handshake - 
+
+Client Hello  
+Server Hello with Certificate which contains Public Key 
+Client Verifies the Certificate from CA provider (expiration, validity etc) and check the Cipers which both supports to use
+Client generates a key which he encodes using server public key and send it to server (key is symmectric encr)  (To enusure if server is who he say he is)
+Server decrypt the key using asymeetric encr (private key) and estabilish a secure encrypted communication.
+
+
+Mutual TLS 
+
+Client Hello.
+Server Hello with Certificate (public key) to the client.
+Client then confirm the CAs whether it’s a valid certificate issued by them or not. This step to make sure server is who its claming to be. 
+Client share his cert and then server verifeis if client is allowed/whitelisted and in the Trust store or not. 
+And then use a aggreed upon secret in symmetric encrpytion. 
+
+--------------------
+
+
+PIA data is stored how? - Encryption - Symmetric or Assymetric depening of the need. 
+password hasing how? -  best practice hash - Argon2 or Bcrypt with SALT
+To verify file signatures and certificates, SHA-256
+Hashing Rounding - taking a hash -> changing 1 bit and rehashing it.  
+
+
+-------------
+Devsecops
+
+STRIDE - Security threat model framework used  to identify potential threats to applications. Each letter in the STRIDE acronym represents a different type of threat:
+
+Spoofing
+Tampering 
+
+Information Disclosure
+Denial of Service (DoS) 
+Elevation of Privilege 
+
+
+THREAD MODDELING - Structured process of identifying, assessing, and mitigating security risks in software applications by analyzing the interactions and behaviors of threads, which are concurrent execution units, within the application's architecture and design.
+ 
+Continues Integration/CD -> Dependency Check SCA (Checkmarx)- SAST (checkmarx) - pull DOCKER and SCAN -> PUSH CODE in docker -> OS Hardeding (scanning the final docker in which application is running)
+
+SHIFT LEFT Approach - implementing securtiy as early in SDLC as possible. 
+
+how the after encryption  key is stored? 0in valut 
+hashicorp vault
+
+----------
+
+
+MOBILE 
+
+Certificate Pinning Bypass - 2 methods: By making changes in Source code OR Android SSL-Trust-Killer application or similar modules in xposed 
+
+Approach - shared pref, folder permissions, MODE_WORLD_READBALE writable files and folders, allow_backup should be false,allow_debug should be false,READ_LOGS flag, static analysis, dex2jar, jd-gui, hardcoded, aws urls, internalIPs, drozer, 
+
+LOGS - 
+Copy/Paste -  other malicious application can access clipboard and steal data
+
+Exported Content Provider - Could contain keys, creds, secrets  
+Exported Activities and Permissions - Open after auth activity using (drozer)
+Attacking Services- Any exported service(for ex: location) can be executed without any auth through malicious application (drozer)  (this will enalbed location of the andriod device)
+
+
+ code obfuscation with the help of Proguard to avoid jd-gui  - dont stop completly but slow down the RE 
+
+how jwt should be stored in android. or any other auth token -  
+    - encrypt using 3rd party or EncryptedSharedPreferences lib  and store In shared pref
+    - Store tokens in memory while app runs, for short term sessions.
+    - In Android Keystore 
+    - Biometric Authentication 2fa for Android Keystore 
+
+
+rootdetectuion - rootbear
+sslpinning  bypass xposed - frida 
+MOBSF
+
+
+webview - load webpage within application 
+deeplink - customeschemma://call/profiledelete
+
+CSRF - deleteprofile deeplink, any 3rd party applicaiton can call the deeplink and deleteprofile_- (autoverify = true) should be set in AndriodManifest to remidiate this. 
+openredirect- find deeplink with intent-filter and schema. and execute
+
+Intent can be used for
+
+To start an Activity, typically opening a user interface for an app
+As broadcasts to inform the system and apps of changes
+To start, stop, and communicate with a background service
+
+
+
+
+----------
+Web
+
+
+HTTP DYSYNC
+Deserialization
+
+DOM - 
+sources:
+document.URL
+document.documentURI
+document.URLUnencoded
+document.baseURI
+location.search
+document.cookie
+document.referrer
+
+sinks:
+eval
+element.innerHTML
+element.outerHTML
+element.insertAdjacentHTML
+element.onevent
+document.write()
+document.writeln()
+document.domain
+
+
+
+* Oauth flows - 
+Authorization Code Flow - Authorization token is reviced and then back-end server-server communication for accesstoken and userdetails
+Implicit Grant Type - Used for single page application since, there is no backend. they directly recive the acecss token through the interceptanle request and then send a post request to save it in the dataabsed if needed for furute for user login 
+
+State 
+redirect_uri + open redirect chain 
+
+
+OPENID - layer on top of oauth for authentication 
+    - scope openid - must
+    - id_token - jwt token recevied with access token as identify identifer of user
+
+attack - self client register with redirect_uri ,logo uri , which is getting trigged causeing an ssrf
+
+
+
+
+------
+Network
+
+OSI - Common Attacks
+ 
+
+Physical -  Cables, wire, Bluethooth, USB, LAN      - DOS attacks, MITM physical device 
+DataLink -  ARP, WAN                                - ArpSpoofing, Mac Flooding
+Network  -  IMCP, IPv4, IPv6, IPsec                 - IP Spoofing
+Transport - TCP/UDP                                 - DDOS- SYN Flood
+sessions  - NetBios                                 - Session Hijacking
+Presentation  - SSL                                 - SSL Hijacking MITM
+Application Layer - ALL the web related attacks - SQLi, xss, parameter tampering
+
+All people should try new dominos pizza
+
+
+evildropping
+DNS posinoing - 
+arp SPoofing - Mac:IP 
+-----------
+
+Hardik - 
+
+Bufferover flow basic 
+
+Application take username input of 8 char, we give more chars and application should give error if we give more and should not process the input, buffer overflow occurs when ex. we give 10 char input and application processes that last of char input. that is executed in the memorty, attacker could run malicious shell script, rev shell etc. 
+
+
+Network 
+
+How does Nmap work? 
+Ping work?
+
+---------
+Config Review.  CIS BenchMark/ TrendMicro 
+Azure Benchmark foundation 
+GCP Benchmark 
+AWS Benchmark 
+
+palo alto
+
+Components/services - iam , lambda, eks, 
+------
+
+
+Owasp cheatsheet -
+
+Database
+Crypto
+TLS
+CSRF
+DOM BASED XSS 
+Mobile Applicatino
+Cloud Architecture Security
+Arcitechture review
+Secret Management
+
+
+
+
 **Firewalls** control and filter network traffic to protect against unauthorized access and cyber threats. Control What goes out of internal network and what req comes in.
 
 **Intrusion Detection Systems (IDS)** monitor network traffic for signs of potential attacks and generate alerts.
